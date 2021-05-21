@@ -1,19 +1,17 @@
 import React, {useState,useEffect,useContext} from 'react';
 import Card from "react-bootstrap/Card";
 import Badge from "react-bootstrap/Badge";
-import { FontAwesomeIcon } from '@fortawesome/react-fontawesome'
 import Form from "react-bootstrap/Form";
 import Button from "react-bootstrap/Button";
 import Navbar from 'react-bootstrap/Navbar'
 import Nav from 'react-bootstrap/Nav'
 import DeleteIcon from "@material-ui/icons/DeleteOutline";
 import EditIcon from '@material-ui/icons/Edit';
-import {Link} from 'react-router-dom';
 import NewTodo from './newtodo'
 import MyVerticallyCenteredModal from './newtodo'
 import todoServices from '../services/todo_services'
 import EditTodo from './edit'
-function App(props) {
+function Todo(props) {
     const [todos,setTodos] = useState([]);
     const [allow,setAllow]=useState(false)
     const [load,isLoad]=useState(false)
@@ -21,9 +19,6 @@ function App(props) {
     const [modalShow, setModalShow] = React.useState(false);
     const [mydata,setmyData]=useState()
     let newtodo={title:"",priority:"",label:"",userId:localStorage.getItem("userId")}
-    //     const onChange = e =>{
-//     setUser({...user,[e.target.name] : e.target.value});   
-// }
 const handleEdit=(data)=>{
    setmyData(data)
   setEditload(true)
@@ -35,10 +30,6 @@ const updateTodos=()=>{
   setEditload(false)
   setAllow(false)
   todoServices.getTodo(newtodo).then(data=>{
-    //  setTodos(data.allTodos)
-  
-    //  setAllow(true)
-    //  console.log(todos)
       console.log(data.allTodos)
       setTodos(data.allTodos)
       setAllow(true)
@@ -48,10 +39,6 @@ useEffect(()=>{
  
   
     todoServices.getTodo(newtodo).then(data=>{
-    //  setTodos(data.allTodos)
-  
-    //  setAllow(true)
-    //  console.log(todos)
       console.log(data.allTodos)
       setTodos(data.allTodos)
       setAllow(true)
@@ -82,16 +69,7 @@ const handleLogout=()=>{
         onHide={updateTodos}
       />
     </>
-    {/* <>
-
-   
-      <EditTodo
-        show={editLoad}
-        onHide={updateTodos}
-        data={mydata}
-      />
-    </>
-    */}
+    
       {editLoad?  <EditTodo
         show={editLoad}
         onHide={updateTodos}
@@ -135,4 +113,4 @@ todos.map(data=>{
 
 
 
-export default App;
+export default Todo;

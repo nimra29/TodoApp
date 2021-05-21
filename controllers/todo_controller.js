@@ -110,52 +110,28 @@ exports.delTodos = async(req, res, next) => {
          
 },
 exports.editTodos = async(req, res, next) => {
-    console.log(req.body);
-   // var errors = validationResult(req) //if errors from user_request.js
-    // if (!errors.isEmpty()) {
-    //     res.status(422).json({ errors: errors.array() })
-    //     return
-    // }
-    
-//     var {userId } = req.body
-//     let allTodos=[];
-//     let i=0;
-//     let myfinal=[];
-//     let mytodos={}
-//      mytodos=await todo.findAll({
-//         where:{
-//             userId:userId
-//         }
-//     })
-//     for(let i=0; i<mytodos.length;i++){
-//         let ll=await labels.findAll({
-//             where:{
-//                 todoId:mytodos[i].id
-//             }
-//         })
-//        mytodos[i].label=ll;
-//        var data = {
-    
-//         title: mytodos[i].title,
-//         priority: mytodos[i].priority,
-//         labels: ll,
-//         id:mytodos[i].id
-//       }
-//        myfinal[i]=data;
-//         //  allTodos[i++]= {id:item.id, title:item.title, priority:item.priority, label:lll}
+    var {title,priority,label,todoId} =req.body 
+    let delItem= await labels.destroy({
+        where: {
+            todoId:todoId
+        }
+    }); 
+    todo.update(
+        { title:title, priority:priority },
+        { where: { _id: 1 } }
+      )
+        .then(result =>
+          handleResult(result)
+        )
+        .catch(err =>
+          handleError(err)
+        )
+        label.forEach( async (item)=> {
+            var res= await labels.create({todoId:todoId,title:item})
+           });
+         return res.status(200).json({
+             Message: "Success",
+           })
+         
         
-        
-//     }
-//    mytodos.forEach(todooo=>{
-//        todooo.label.forEach(too=>{
-//            console.log(too.title)
-//        })
-//    })
-//    console.log("gya")
-//     return res.status(200).json({
-//                     message: 'Success',
-//                     allTodos:myfinal,
-                  
-//     })
-    
 }

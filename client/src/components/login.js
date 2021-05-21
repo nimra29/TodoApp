@@ -47,11 +47,9 @@ console.log("hello")
   </Form.Group>
 
  
-  {/* <Button type = "primary" style={{marginBottom:"0.7rem"}} htmlType="submit" className = "login-form-button"  variant="secondary" size="lg" block onSubmit={console.log("hel")}>
+  <Button type = "primary" style={{marginBottom:"0.7rem"}} htmlType="submit" className = "login-form-button"  variant="secondary" size="lg" block onSubmit={console.log("hel")}>
                             Sign IN
-                            </Button> */}
-                            <button className="btn btn-lg btn-primary btn-block" 
-                        type="submit" onClick={handler}>Log in </button>
+                            </Button>
   dont have an account?  
   <Link to="/register">
                         Register now!

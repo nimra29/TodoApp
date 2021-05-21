@@ -16,7 +16,6 @@ function MyVerticallyCenteredModal(props) {
     console.log(todo.priority)
     console.log(label)
     let newtodo={title:todo.title,priority:todo.priority,label:label,userId:localStorage.getItem("userId")}
-    //todoServices.postTodo(newtodo) 
     todoServices.postTodo(newtodo)   
     setTodo({title:"",priority:""})
     setLabel([])

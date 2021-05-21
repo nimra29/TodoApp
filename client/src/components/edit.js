@@ -28,9 +28,7 @@ function MyVerticallyCenteredModal(props) {
      console.log("here")
       console.log(props.data.labels)
       setTodo({title:props.data.title,priority:props.data.priority,id:props.data.id})
-    //   setLabel(props.data.labels)
-    //   setTodo(props.data);
-    //   setLabel(props.data.labels)
+    
     props.data.labels.map(item=>{
         setLabel([...label, item.title])
     })
